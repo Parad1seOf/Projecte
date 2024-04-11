@@ -22,8 +22,13 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] private bool Grounded;
     private bool Jump;
 
+[Header("Animation")]
+
+    private Animator animator;
+
     public void Start () {
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     public void Update () {
@@ -35,7 +40,7 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     public void FixedUpdate () {
-        Grounded = Physics2D.OverlapCircle(GroundSensor.position, 0f, GroundCheck);
+        Grounded = Physics2D.OverlapBox(GroundSensor.position, ColiderDimension, 0f, GroundCheck);
 
         MoveCharacter(HorizontalMovement * Time.fixedDeltaTime, Jump);
 
@@ -67,6 +72,6 @@ public class CharacterMovement : MonoBehaviour {
 
     public void OnDrawGizmos () {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(GroundSensor.position, 0f);
+        Gizmos.DrawWireCube(GroundSensor.position, ColiderDimension);
     }
 }
