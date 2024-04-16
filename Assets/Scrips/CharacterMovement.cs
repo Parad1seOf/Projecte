@@ -47,7 +47,7 @@ public class CharacterMovement : MonoBehaviour {
             Jump = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && CanDash) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && CanDash) {
             StartCoroutine(Dash());
         }
     }
