@@ -231,7 +231,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   GroundSensor: {fileID: 2060208519}
-  ColiderDimension: {x: 0, y: 0, z: 0}
+  ColiderDimension: {x: 1, y: 0.25, z: 0}
   Grounded: 0
 --- !u!50 &114279520
 Rigidbody2D:
@@ -259,7 +259,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &114279521
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 322508933}
   - component: {fileID: 322508934}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 'Floor3 '
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -447,7 +447,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 322508932}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -537,7 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 407401325}
   - component: {fileID: 407401326}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Celling2
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -568,7 +568,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 407401324}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -591,7 +591,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.33099747, y: 0.4486258}
+  m_Offset: {x: 0.33099747, y: 0.3730967}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -602,7 +602,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.9646454, y: 2.3239932}
+  m_Size: {x: 7.9646454, y: 2.172935}
   m_EdgeRadius: 0
 --- !u!1 &453184621
 GameObject:
@@ -698,7 +698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 465939255}
   - component: {fileID: 465939256}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Island2
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -729,7 +729,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 465939254}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -776,6 +776,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -790,7 +791,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -826,7 +827,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.4871535
+  orthographic size: 2.9577186
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -857,6 +858,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d5955cc0087f749b39e87fbe03b675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 114279524}
+  SmoothTime: 0.1
 --- !u!1 &596236246
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 596236247}
   - component: {fileID: 596236248}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor5
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -898,7 +913,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 596236246}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -950,7 +965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 600530469}
   - component: {fileID: 600530470}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall1
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -981,7 +996,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 600530468}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1027,7 +1042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 622037772}
   - component: {fileID: 622037773}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor4
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -1058,7 +1073,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 622037771}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1188,7 +1203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 696804477}
   - component: {fileID: 696804478}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Island1
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -1217,9 +1232,9 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696804476}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1349,7 +1364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 723725202}
   - component: {fileID: 723725203}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Island5
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -1380,7 +1395,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 723725201}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1724,7 +1739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046912439}
   - component: {fileID: 1046912440}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Island4
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -1755,7 +1770,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1046912438}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1901,7 +1916,7 @@ Transform:
   m_GameObject: {fileID: 1104139872}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3847551, y: -5.4685316, z: -0.03579709}
+  m_LocalPosition: {x: 0, y: -5.4685316, z: -0.03579709}
   m_LocalScale: {x: 100, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4658,7 +4673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580926185}
   - component: {fileID: 1580926186}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Island3
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -4689,7 +4704,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1580926184}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4903,7 +4918,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721218818}
   - component: {fileID: 1721218819}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor1
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -4934,7 +4949,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1721218817}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4980,7 +4995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723067755}
   - component: {fileID: 1723067756}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Celling1
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -5011,7 +5026,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1723067754}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5140,7 +5155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1763376997}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LevelCollisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5355,7 +5370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1984772437}
   - component: {fileID: 1984772438}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Celling3
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -5386,7 +5401,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1984772436}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5444,7 +5459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1994388126}
   - component: {fileID: 1994388127}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -5475,7 +5490,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1994388125}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5521,7 +5536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037921052}
   - component: {fileID: 2037921053}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor2
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -5552,7 +5567,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2037921051}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5614,7 +5629,7 @@ Transform:
   m_GameObject: {fileID: 2060208518}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.088, y: -0.013, z: -0.011588385}
+  m_LocalPosition: {x: 0.014, y: 0.015, z: -0.011588385}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
