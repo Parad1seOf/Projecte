@@ -22,6 +22,14 @@ public class CharacterMovement : MonoBehaviour {
     [SerializeField] private bool Grounded;
     private bool Jump;
 
+[Header ("Dash")]
+    
+        [SerializeField] private float SpeedDash;
+        [SerializeField] private float DashTime;
+        private float InitialGravity;
+        private bool CanDash = true;
+        private bool CanMove = true;
+
 [Header("Animation")]
 
     private Animator animator;
@@ -29,6 +37,7 @@ public class CharacterMovement : MonoBehaviour {
     public void Start () {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        InitialGravity = rb2D.gravityScale;
     }
 
     public void Update () {
@@ -37,13 +46,19 @@ public class CharacterMovement : MonoBehaviour {
         if (Input.GetButtonDown("Jump")) {
             Jump = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.F) && CanDash) {
+            StartCoroutine(Dash());
+        }
     }
 
     public void FixedUpdate () {
         Grounded = Physics2D.OverlapBox(GroundSensor.position, ColiderDimension, 0f, GroundCheck);
 
+        if (CanMove) {
         MoveCharacter(HorizontalMovement * Time.fixedDeltaTime, Jump);
-
+        }
+        
         Jump = false;
     }
 
@@ -61,6 +76,18 @@ public class CharacterMovement : MonoBehaviour {
             Grounded = false;
             rb2D.AddForce(new Vector2(0f, JumpForce));
         }
+    }
+
+    private IEnumerator Dash() {
+        CanMove = false;
+        CanDash = false;
+        rb2D.gravityScale = 0;
+        rb2D.velocity = new Vector2(SpeedDash * transform.localScale.x, 0);
+
+        yield return new WaitForSeconds(DashTime);
+        CanMove = true;
+        CanDash = true;
+        rb2D.gravityScale = InitialGravity;
     }
 
     public void Flip () {

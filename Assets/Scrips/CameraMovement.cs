@@ -9,9 +9,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float SmoothTime;
     private Vector3 Velocity = Vector3.zero;
 
+// only follow target on x axis and keep the camera on the same y axis
     public void Update()
     {
-        Vector3 TargetPosition = new Vector3(Target.position.x, Target.position.y, transform.position.z);
-        transform.position = Vector3.SmoothDamp(transform.position, TargetPosition, ref Velocity, SmoothTime);
+        Vector3 targetPosition = new Vector3(Target.position.x, transform.position.y, transform.position.z);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref Velocity, SmoothTime);
     }
 }
