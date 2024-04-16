@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {
     private Rigidbody2D rb2D;
+    public Collider2D colliderRollActivada;
+    public Collider2D colliderBaseActivada;
+    
 
 [Header("Movement")]
 
@@ -47,7 +50,7 @@ public class CharacterMovement : MonoBehaviour {
             Jump = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && CanDash) {
+        if (Input.GetKeyDown(KeyCode.L) && CanDash) {
             StartCoroutine(Dash());
         }
     }
@@ -83,11 +86,19 @@ public class CharacterMovement : MonoBehaviour {
         CanDash = false;
         rb2D.gravityScale = 0;
         rb2D.velocity = new Vector2(SpeedDash * transform.localScale.x, 0);
+        
+        colliderRollActivada.enabled = true;
+        colliderBaseActivada.enabled = false;
 
         yield return new WaitForSeconds(DashTime);
         CanMove = true;
         CanDash = true;
         rb2D.gravityScale = InitialGravity;
+
+        colliderRollActivada.enabled = false;
+        colliderBaseActivada.enabled = true;
+
+
     }
 
     public void Flip () {

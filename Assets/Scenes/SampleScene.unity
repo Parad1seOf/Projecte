@@ -262,6 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631e12cff83aca84da36ab35c50665f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderRollActivada: {fileID: 210199510}
+  colliderBaseActivada: {fileID: 210199500}
   SpeedMovement: 35
   SmoothMovement: 0.183
   JumpForce: 600
@@ -271,8 +273,8 @@ MonoBehaviour:
   GroundSensor: {fileID: 265386929}
   ColiderDimension: {x: 1, y: 0.25, z: 0}
   Grounded: 0
-  SpeedDash: 15
-  DashTime: 0
+  SpeedDash: 3
+  DashTime: 0.1
 --- !u!61 &210199500
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -363,6 +365,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnPoint: {x: -7.62, y: -3.4}
+--- !u!58 &210199510
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210199498}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.005383426, y: 0.12188244}
+  serializedVersion: 2
+  m_Radius: 0.10675322
 --- !u!1 &219504960
 GameObject:
   m_ObjectHideFlags: 0
@@ -5194,7 +5231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.5147
+      value: -7.575
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5245,6 +5282,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 210199500}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 210199510}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 210199499}
