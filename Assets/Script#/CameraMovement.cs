@@ -5,12 +5,24 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [Header("Camera")]
-    [SerializeField] private Transform Target;
-    [SerializeField] private float SmoothTime;
-    private Vector3 Velocity = Vector3.zero;
-    public void Update()
-    {
-        Vector3 targetPosition = new Vector3(Target.position.x, transform.position.y, transform.position.z);
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref Velocity, SmoothTime);
+    private Vector3 targetPoint = Vector3.zero;
+    [SerializeField] private CharacterMovement player;
+
+    [SerializeField] private float cameraSpeed;
+
+    void Start() {
+        targetPoint = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+    }
+
+    void LateUpdate() {
+        targetPoint.x = player.transform.position.x;
+        targetPoint.y = player.transform.position.y;
+
+        if (targetPoint.y < 0) {
+            targetPoint.y = 0;
+        }
+
+        // transform.position = targetPoint;
+        transform.position = Vector3.Lerp(transform.position, targetPoint, cameraSpeed * Time.deltaTime);
     }
 }
