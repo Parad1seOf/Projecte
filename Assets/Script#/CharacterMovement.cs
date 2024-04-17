@@ -66,7 +66,7 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     public void MoveCharacter (float HorizontalMovement, bool Jump) {
-        Vector3 TargetVelocity = new Vector2(HorizontalMovement * 10f, rb2D.velocity.y);
+        Vector3 TargetVelocity = Vector2.right * (HorizontalMovement * 10f) + Vector2.up * (rb2D.velocity.y);
         rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, TargetVelocity, ref Velocity, SmoothMovement);
 
         if (HorizontalMovement > 0 && !FacingRight) {
@@ -85,7 +85,7 @@ public class CharacterMovement : MonoBehaviour {
         CanMove = false;
         CanDash = false;
         rb2D.gravityScale = 0;
-        rb2D.velocity = new Vector2(SpeedDash * transform.localScale.x, 0);
+        rb2D.velocity = Vector2.right * (SpeedDash * transform.localScale.x);
         
         colliderRollActivada.enabled = true;
         colliderBaseActivada.enabled = false;
@@ -108,8 +108,10 @@ public class CharacterMovement : MonoBehaviour {
         transform.localScale = Scaler;
     }
 
+#if UNITY_EDITOR
     public void OnDrawGizmos () {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(GroundSensor.position, ColiderDimension);
     }
+#endif
 }
