@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,15 +11,22 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private float cameraSpeed;
 
-    void Start() {
-        targetPoint = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+    //private GameObject CameraLimitDown;
+
+    void Start()
+    {
+        targetPoint = player.transform.position;
     }
 
-    void LateUpdate() {
+    void LateUpdate()
+    {
         targetPoint.x = player.transform.position.x;
         targetPoint.y = player.transform.position.y;
 
-        if (targetPoint.y < 0) {
+        //Console.WriteLine(CameraLimitDown.transform.position.y);
+
+        if (targetPoint.y < 0)
+        {
             targetPoint.y = 0;
         }
 
