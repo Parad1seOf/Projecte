@@ -6,31 +6,29 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [Header("Camera")]
-    private Vector3 targetPoint = Vector3.zero;
     [SerializeField] private CharacterMovement player;
-
     [SerializeField] private float cameraSpeed;
 
-    //private GameObject CameraLimitDown;
+    private Vector3 initialOffset;
 
     void Start()
     {
-        targetPoint = player.transform.position;
+        // Calcular el desplazamiento inicial entre la cámara y el jugador
+        initialOffset = transform.position - player.transform.position;
     }
 
     void LateUpdate()
     {
-        targetPoint.x = player.transform.position.x;
-        targetPoint.y = player.transform.position.y;
+        // Calcular el punto objetivo de la cámara sumando el desplazamiento inicial al jugador
+        Vector3 targetPoint = player.transform.position + initialOffset;
 
-        //Console.WriteLine(CameraLimitDown.transform.position.y);
-
+        // Limitar el movimiento de la cámara si el jugador está por debajo de cierta altura
         if (targetPoint.y < 0)
         {
             targetPoint.y = 0;
         }
 
-        // transform.position = targetPoint;
+        // Mover suavemente la cámara hacia el punto objetivo
         transform.position = Vector3.Lerp(transform.position, targetPoint, cameraSpeed * Time.deltaTime);
     }
 }
