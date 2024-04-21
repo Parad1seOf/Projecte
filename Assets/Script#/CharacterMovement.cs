@@ -61,7 +61,7 @@ public class CharacterMovement : MonoBehaviour {
         if (CanMove) {
         MoveCharacter(HorizontalMovement * Time.fixedDeltaTime, Jump);
         }
-        
+
         Jump = false;
     }
 
