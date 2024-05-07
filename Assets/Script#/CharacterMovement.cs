@@ -8,6 +8,8 @@ public class CharacterMovement : MonoBehaviour
     public Collider2D RollColider;
     public Collider2D IdleColider;
 
+    [SerializeField] private Cooldown cooldown;
+
 
     [Header("Movement")]
 
@@ -34,14 +36,9 @@ public class CharacterMovement : MonoBehaviour
     private bool CanRoll = true;
     private bool CanMove = true;
 
-    [Header("Animation")]
-
-    private Animator animator;
-
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         InitialGravity = rb2D.gravityScale;
     }
 
@@ -54,10 +51,15 @@ public class CharacterMovement : MonoBehaviour
             Jump = true;
         }
 
+        #if ENABLE_LEGACY_INPUT_MANAGER
+        if (cooldown.IsCoolingDown) return;
         if (Input.GetButtonDown("Roll") && CanRoll)
         {
             StartCoroutine(Roll());
+            cooldown.StartCooldown();
+
         }
+        #endif
     }
 
     public void FixedUpdate()
@@ -92,9 +94,10 @@ public class CharacterMovement : MonoBehaviour
             rb2D.AddForce(new Vector2(0f, JumpForce));
         }
     }
-
     private IEnumerator Roll()
     {
+        if(cooldown.IsCoolingDown) yield return null;
+
         if (Grounded)
         {
             CanMove = false;
@@ -115,7 +118,7 @@ public class CharacterMovement : MonoBehaviour
         }
         
 
-
+        cooldown.StartCooldown();
     }
 
     public void Flip()
