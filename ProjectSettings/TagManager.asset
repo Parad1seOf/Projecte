@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DeathZone
   - CameraBoundaries
+  - Enemy
   layers:
   - Default
   - TransparentFX
