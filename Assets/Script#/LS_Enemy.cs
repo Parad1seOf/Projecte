@@ -1,7 +1,5 @@
 using System.Collections;
-// using System.Numerics;
 
-// using System.Collections.Generic;
 using UnityEngine;
 
 public class LS_Enemy : MonoBehaviour
@@ -36,9 +34,6 @@ private void Start()
     CurrentPoint = p_point2.transform;
 }
 
-/// <summary>
-/// This method is called once per frame and is responsible for updating the enemy's behavior.
-/// </summary>
 private void Update()
 {
     // if (Health <= 0)
@@ -60,13 +55,11 @@ private void Update()
 
         if (Vector2.Distance(transform.position, CurrentPoint.position) < 0.5f && CurrentPoint == p_point2.transform)
         {
-            System.Console.Write("Flip de punt 2 a punt 1");
             flip();
             CurrentPoint = p_point1.transform;
         }
         if (Vector2.Distance(transform.position, CurrentPoint.position) < 0.5f && CurrentPoint == p_point1.transform)
         {
-            System.Console.Write("Flip de punt 1 a punt 2");
             flip();
             CurrentPoint = p_point2.transform;
         }
@@ -83,10 +76,28 @@ private void Update()
             if (Vector2.Distance(transform.position, Player.transform.position) < AttackRange)
             {
                 // Animations.SetBool("IsAttacking", true);
+                // Animations.SetBool("IsWalking", false);
+                // Animations.SetBool("IsIdle", false);
+
+                if (Player.transform.position.x > transform.position.x)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else if (Player.transform.position.x < transform.position.x)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+
+                if (Vector2.Distance(transform.position, Player.transform.position) < 0.5f)
+                {
+                    Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
+                }
             }
             else
             {
                 // Animations.SetBool("IsAttacking", false);
+                // Animations.SetBool("IsWalking", true);
+                // Animations.SetBool("IsIdle", false);
             }
         }
     }
