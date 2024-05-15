@@ -32,15 +32,12 @@ private void Start()
 {
     rb = GetComponent<Rigidbody2D>();   
     CurrentPoint = p_point2.transform;
+
+    HealthManager = new GM_Health();
 }
 
 private void Update()
 {
-    // if (Health <= 0)
-    // {
-    //     Destroy(gameObject);
-    // }
-
     if (Vector2.Distance(transform.position, Player.transform.position) > DetectionRange) 
     {
         Vector2 point = CurrentPoint.position - transform.position;
@@ -81,16 +78,16 @@ private void Update()
 
                 if (Player.transform.position.x > transform.position.x)
                 {
-                    transform.localScale = new Vector3(-1, 1, 1);
+                    // transform.localScale = new Vector3(-1, 1, 1);
                 }
                 else if (Player.transform.position.x < transform.position.x)
                 {
-                    transform.localScale = new Vector3(1, 1, 1);
+                    // transform.localScale = new Vector3(1, 1, 1);
                 }
 
                 if (Vector2.Distance(transform.position, Player.transform.position) < 0.5f)
                 {
-                    Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
+                    // Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
                 }
             }
             else
@@ -102,6 +99,11 @@ private void Update()
         }
     }
     }
+}
+
+public void TakeDamage(int damage)
+{
+    HealthManager.TakeDamage(damage);
 }
 
 private void FixedUpdate()
