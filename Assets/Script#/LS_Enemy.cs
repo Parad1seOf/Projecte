@@ -36,10 +36,11 @@ private void Start()
 
 private void Update()
 {
-    // if (Health <= 0)
-    // {
-    //     Destroy(gameObject);
-    // }
+    if (HealthManager.GetHealth() <= 0)
+    {
+        // Animations.SetBool("IsDead", true);
+        Destroy(gameObject);
+    }
 
     if (Vector2.Distance(transform.position, Player.transform.position) > DetectionRange) 
     {
@@ -81,16 +82,16 @@ private void Update()
 
                 if (Player.transform.position.x > transform.position.x)
                 {
-                    transform.localScale = new Vector3(-1, 1, 1);
+                    // transform.localScale = new Vector3(-1, 1, 1);
                 }
                 else if (Player.transform.position.x < transform.position.x)
                 {
-                    transform.localScale = new Vector3(1, 1, 1);
+                    // transform.localScale = new Vector3(1, 1, 1);
                 }
 
                 if (Vector2.Distance(transform.position, Player.transform.position) < 0.5f)
                 {
-                    // Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
+                    Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
                 }
             }
             else
