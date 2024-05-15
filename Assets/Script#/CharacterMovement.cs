@@ -5,8 +5,10 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     private Rigidbody2D rb2D;
+    private Animator animator;
     public Collider2D RollColider;
     public Collider2D IdleColider;
+
 
     [SerializeField] private Cooldown cooldown;
 
@@ -39,6 +41,7 @@ public class CharacterMovement : MonoBehaviour
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         InitialGravity = rb2D.gravityScale;
     }
 
@@ -57,9 +60,8 @@ public class CharacterMovement : MonoBehaviour
         {
             StartCoroutine(Roll());
             cooldown.StartCooldown();
-
         }
-        #endif
+#endif
     }
 
     public void FixedUpdate()
@@ -78,6 +80,8 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector3 TargetVelocity = new Vector2(HorizontalMovement * 10f, rb2D.velocity.y);
         rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, TargetVelocity, ref Velocity, SmoothMovement);
+        animator.SetFloat("speed", rb2D.velocity.x);
+        animator.SetFloat("impulse", rb2D.velocity.y);
 
         if (HorizontalMovement > 0 && !FacingRight)
         {
@@ -96,27 +100,30 @@ public class CharacterMovement : MonoBehaviour
     }
     private IEnumerator Roll()
     {
-        if(cooldown.IsCoolingDown) yield return null;
+
+        if (cooldown.IsCoolingDown) yield return null;
 
         if (Grounded)
         {
             CanMove = false;
-        CanRoll = false;
-        rb2D.gravityScale = 0;
-        rb2D.velocity = new Vector2(RollSpeed * transform.localScale.x, 0);
+            CanRoll = false;
+            rb2D.gravityScale = 0;
+            rb2D.velocity = new Vector2(RollSpeed * transform.localScale.x, 0);
 
-        RollColider.enabled = true;
-        IdleColider.enabled = false;
+            RollColider.enabled = true;
+            IdleColider.enabled = false;
+            
+            animator.SetBool("roll", true);
 
         yield return new WaitForSeconds(RollTime);
-        CanMove = true;
-        CanRoll = true;
-        rb2D.gravityScale = InitialGravity;
+            CanMove = true;
+            CanRoll = true;
+            rb2D.gravityScale = InitialGravity;
 
-        RollColider.enabled = false;
-        IdleColider.enabled = true;
+            RollColider.enabled = false;
+            IdleColider.enabled = true;
+
         }
-        
 
         cooldown.StartCooldown();
     }
