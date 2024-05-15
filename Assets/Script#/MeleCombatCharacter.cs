@@ -7,6 +7,13 @@ public class MeleCombatCharacter : MonoBehaviour
     [SerializeField] private Transform AttackController;
     [SerializeField] private float AttackRange;
     [SerializeField] private int AttackDamage;
+    private Animator animator;
+
+
+    public void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -14,6 +21,7 @@ public class MeleCombatCharacter : MonoBehaviour
         {
             Hit();
             Debug.Log("Attack");
+            animator.SetTrigger("attack");
         }
     }
 

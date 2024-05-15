@@ -113,7 +113,7 @@ public class CharacterMovement : MonoBehaviour
             RollColider.enabled = true;
             IdleColider.enabled = false;
             
-            animator.SetBool("roll", true);
+            animator.SetTrigger("roll");
 
         yield return new WaitForSeconds(RollTime);
             CanMove = true;
