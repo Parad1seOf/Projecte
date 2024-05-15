@@ -90,7 +90,7 @@ private void Update()
 
                 if (Vector2.Distance(transform.position, Player.transform.position) < 0.5f)
                 {
-                    Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
+                    // Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
                 }
             }
             else

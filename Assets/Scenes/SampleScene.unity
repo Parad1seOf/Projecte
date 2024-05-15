@@ -14600,8 +14600,8 @@ BoxCollider2D:
   m_Offset: {x: 0.019208163, y: 0.20560049}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.372093, y: -0.025641026}
-    oldSize: {x: 0.43, y: 0.39}
+    pivot: {x: 0.4029851, y: -0.020833334}
+    oldSize: {x: 0.67, y: 0.48}
     newSize: {x: 0.43, y: 0.39}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -14690,6 +14690,21 @@ CircleCollider2D:
   m_Offset: {x: 0.005383426, y: 0.12188244}
   serializedVersion: 2
   m_Radius: 0.10675322
+--- !u!114 &210199511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210199498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc458590768602042a9a4bceaf195053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackController: {fileID: 517783077}
+  Attackrange: 1
+  AttackDamage: 1
 --- !u!1 &265386928
 GameObject:
   m_ObjectHideFlags: 0
@@ -15254,6 +15269,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2025926964}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &517783076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 517783077}
+  m_Layer: 0
+  m_Name: AttackController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &517783077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517783076}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.159, y: 0.285, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 210199503}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -15530,7 +15576,7 @@ GameObject:
   - component: {fileID: 611089800}
   m_Layer: 0
   m_Name: Goblin2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16033,7 +16079,7 @@ GameObject:
   - component: {fileID: 841881591}
   m_Layer: 0
   m_Name: Goblin1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17036,6 +17082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin2
       objectReference: {fileID: 0}
+    - target: {fileID: 7565058973916368535, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17456,6 +17506,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2944225641156965081, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
+    - target: {fileID: 3626916397498700004, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
@@ -17473,7 +17527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.12
+      value: -5.99
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17517,6 +17571,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 265386929}
+    - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 517783077}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       insertIndex: -1
@@ -17527,6 +17584,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 210199510}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 210199511}
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 210199499}
@@ -18163,6 +18223,10 @@ PrefabInstance:
     - target: {fileID: 7565058973916368535, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
       propertyPath: m_Name
       value: Goblin1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565058973916368535, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
