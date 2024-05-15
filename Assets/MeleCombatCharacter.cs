@@ -1,38 +1,41 @@
-// using System.Collections;
-// using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleCombatCharacter : MonoBehaviour
 {
-[SerializeField] private Transform AttackController;
-[SerializeField] private float Attackrange;
-[SerializeField] private float AttackDamage;
+    [SerializeField] private Transform AttackController;
+    [SerializeField] private float AttackRange;
+    [SerializeField] private int AttackDamage;
 
-private void Update()
-{
-    if (Input.GetButtonDown("Attack"))
+    private void Update()
     {
-        Hit();
-    }
-}
-private void Hit() 
-{
-    Collider2D[] objects = Physics2D.OverlapCircleAll(AttackController.position, Attackrange);
-
-    foreach (Collider2D a_collider in objects)
-    {
-        if (a_collider.CompareTag("Enemy"))
+        if (Input.GetButtonDown("Attack"))
         {
-            // a_collider.transform.GetComponent<Enemy>().TakeDamage(AttackDamage);
+            Hit();
+            Debug.Log("Attack");
         }
     }
-}
+
+    private void Hit() 
+    {
+        Collider2D[] objects = Physics2D.OverlapCircleAll(AttackController.position, AttackRange);
+
+        foreach (Collider2D a_collider in objects)
+        {
+            if (a_collider.CompareTag("Enemy"))
+            {
+                Debug.Log("Hit");
+                a_collider.GetComponent<Test_LiveEnemy>().TakeDamage(AttackDamage);
+            }
+        }
+    }
 
 #if UNITY_EDITOR
-private void OnDrawGizmosSelected()
-{
-Gizmos.color = Color.red;
-Gizmos.DrawWireSphere(AttackController.position, Attackrange);
-}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(AttackController.position, AttackRange);
+    }
 #endif
 }
