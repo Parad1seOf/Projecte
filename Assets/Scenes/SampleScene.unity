@@ -14564,7 +14564,7 @@ MonoBehaviour:
   ColiderDimension: {x: 1, y: 0.25, z: 0}
   Grounded: 0
   RollSpeed: 2.5
-  RollTime: 0.35
+  RollTime: 0.4
 --- !u!61 &210199500
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17505,6 +17505,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1160356261127867848, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dd0f389f915f56c41b321087c3daf39d, type: 2}
     - target: {fileID: 3626916397498700004, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -17531,7 +17535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.97
+      value: -3.049
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_LocalPosition.z
