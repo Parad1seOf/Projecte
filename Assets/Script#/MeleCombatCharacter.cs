@@ -34,7 +34,7 @@ public class MeleCombatCharacter : MonoBehaviour
             if (a_collider.CompareTag("Enemy"))
             {
                 Debug.Log("Hit");
-                a_collider.GetComponent<Test_LiveEnemy>().TakeDamage(AttackDamage);
+                a_collider.GetComponent<LS_Enemy>().TakeDamage(AttackDamage);
             }
         }
     }
