@@ -14600,8 +14600,8 @@ BoxCollider2D:
   m_Offset: {x: 0.019208163, y: 0.20560049}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4029851, y: -0.020833334}
-    oldSize: {x: 0.67, y: 0.48}
+    pivot: {x: 0.372093, y: -0.025641026}
+    oldSize: {x: 0.43, y: 0.39}
     newSize: {x: 0.43, y: 0.39}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -14703,7 +14703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackController: {fileID: 517783077}
-  Attackrange: 1
+  AttackRange: 1
   AttackDamage: 1
 --- !u!1 &265386928
 GameObject:
@@ -15574,6 +15574,7 @@ GameObject:
   - component: {fileID: 611089802}
   - component: {fileID: 611089801}
   - component: {fileID: 611089800}
+  - component: {fileID: 611089804}
   m_Layer: 0
   m_Name: Goblin2
   m_TagString: Enemy
@@ -15603,7 +15604,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1429811723}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 611089798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d36fc4cf0770e41ab70dbb7b4311cc, type: 3}
   m_Name: 
@@ -15613,8 +15614,7 @@ MonoBehaviour:
   MovementSpeed: 5
   MovemntSpeedPatrol: 2.7
   HealthManager:
-    Health: 0
-    MaxHealth: 0
+    health: 0
   Damage: 0
   AttackRange: 1.5
   DetectionRange: 3.5
@@ -15742,6 +15742,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &611089804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611089798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f38cd221aae2f43ba02744881168fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthManager:
+    health: 1
 --- !u!1 &630122154
 GameObject:
   m_ObjectHideFlags: 0
@@ -16077,6 +16091,7 @@ GameObject:
   - component: {fileID: 841881593}
   - component: {fileID: 841881592}
   - component: {fileID: 841881591}
+  - component: {fileID: 841881595}
   m_Layer: 0
   m_Name: Goblin1
   m_TagString: Enemy
@@ -16106,7 +16121,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6249257631746487004}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841881589}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d36fc4cf0770e41ab70dbb7b4311cc, type: 3}
   m_Name: 
@@ -16116,8 +16131,7 @@ MonoBehaviour:
   MovementSpeed: 5
   MovemntSpeedPatrol: 2.7
   HealthManager:
-    Health: 0
-    MaxHealth: 0
+    health: 0
   Damage: 0
   AttackRange: 1.5
   DetectionRange: 3.5
@@ -16245,6 +16259,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &841881595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841881589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f38cd221aae2f43ba02744881168fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthManager:
+    health: 10
 --- !u!1 &854043974
 GameObject:
   m_ObjectHideFlags: 0
@@ -17078,6 +17106,10 @@ PrefabInstance:
       propertyPath: p_point2
       value: 
       objectReference: {fileID: 450923345}
+    - target: {fileID: 5430159215677227494, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7565058973916368535, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
       propertyPath: m_Name
       value: Goblin2
@@ -17512,7 +17544,7 @@ PrefabInstance:
     - target: {fileID: 3626916397498700004, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2944225641156965081, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
+      objectReference: {fileID: -4287889135240243332, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
     - target: {fileID: 3626916397498700004, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -18224,6 +18256,10 @@ PrefabInstance:
       propertyPath: p_point2
       value: 
       objectReference: {fileID: 384212689}
+    - target: {fileID: 5430159215677227494, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7565058973916368535, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
       propertyPath: m_Name
       value: Goblin1
