@@ -76,28 +76,38 @@ public class CharacterMovement : MonoBehaviour
         Jump = false;
     }
 
-    public void MoveCharacter(float HorizontalMovement, bool Jump)
+    public void MoveCharacter(float horizontalMovement, bool jump)
     {
-        Vector3 TargetVelocity = new Vector2(HorizontalMovement * 10f, rb2D.velocity.y);
-        rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, TargetVelocity, ref Velocity, SmoothMovement);
-        animator.SetFloat("speed", rb2D.velocity.x);
+        Vector2 targetVelocity;
+
+        if (Mathf.Approximately(horizontalMovement, 0f)) {
+            targetVelocity = new Vector2(0, rb2D.velocity.y);
+        } else {
+            targetVelocity = new Vector2(horizontalMovement * 10f, rb2D.velocity.y);
+        }
+
+        if (Mathf.Approximately(horizontalMovement, 0f)) {
+            rb2D.velocity = new Vector2(0, rb2D.velocity.y);
+        } else {
+            rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, targetVelocity, ref Velocity, SmoothMovement);
+        }
+
+        animator.SetFloat("speed", Mathf.Abs(rb2D.velocity.x));
         animator.SetFloat("impulse", rb2D.velocity.y);
 
-        if (HorizontalMovement > 0 && !FacingRight)
-        {
+        if (horizontalMovement > 0 && !FacingRight) {
             Flip();
-        }
-        else if (HorizontalMovement < 0 && FacingRight)
-        {
+        } else if (horizontalMovement < 0 && FacingRight) {
             Flip();
         }
 
-        if (Grounded && Jump)
-        {
+        if (Grounded && jump) {
             Grounded = false;
             rb2D.AddForce(new Vector2(0f, JumpForce));
         }
     }
+
+
     private IEnumerator Roll()
     {
 

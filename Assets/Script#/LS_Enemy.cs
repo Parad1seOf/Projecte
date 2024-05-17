@@ -66,38 +66,38 @@ private void Update()
     {
         Player = GameObject.FindGameObjectWithTag("Player"); 
     }
-    else
-    {
-        if (Vector2.Distance(transform.position, Player.transform.position) < DetectionRange)
-        {
-            if (Vector2.Distance(transform.position, Player.transform.position) < AttackRange)
-            {
-                // Animations.SetBool("IsAttacking", true);
-                // Animations.SetBool("IsWalking", false);
-                // Animations.SetBool("IsIdle", false);
+    // else
+    // {
+    //     if (Vector2.Distance(transform.position, Player.transform.position) < DetectionRange)
+    //     {
+    //         if (Vector2.Distance(transform.position, Player.transform.position) < AttackRange)
+    //         {
+    //             // Animations.SetBool("IsAttacking", true);
+    //             // Animations.SetBool("IsWalking", false);
+    //             // Animations.SetBool("IsIdle", false);
 
-                if (Player.transform.position.x > transform.position.x)
-                {
-                    // transform.localScale = new Vector3(-1, 1, 1);
-                }
-                else if (Player.transform.position.x < transform.position.x)
-                {
-                    // transform.localScale = new Vector3(1, 1, 1);
-                }
+    //             if (Player.transform.position.x > transform.position.x)
+    //             {
+    //                 // transform.localScale = new Vector3(-1, 1, 1);
+    //             }
+    //             else if (Player.transform.position.x < transform.position.x)
+    //             {
+    //                 // transform.localScale = new Vector3(1, 1, 1);
+    //             }
 
-                if (Vector2.Distance(transform.position, Player.transform.position) < 0.5f)
-                {
-                    // Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
-                }
-            }
-            else
-            {
-                // Animations.SetBool("IsAttacking", false);
-                // Animations.SetBool("IsWalking", true);
-                // Animations.SetBool("IsIdle", false);
-            }
-        }
-    }
+    //             if (Vector2.Distance(transform.position, Player.transform.position) < 0.5f)
+    //             {
+    //                 // Player.GetComponent<GM_Health>().TakeDamage(Damage);                    
+    //             }
+    //         }
+    //         else
+    //         {
+    //             // Animations.SetBool("IsAttacking", false);
+    //             // Animations.SetBool("IsWalking", true);
+    //             // Animations.SetBool("IsIdle", false);
+    //         }
+    //     }
+    // }
     }
 }
 
