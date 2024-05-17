@@ -104,6 +104,13 @@ private void Update()
 public void TakeDamage(int damage)
 {
     HealthManager.TakeDamage(damage);
+    
+}
+
+public void Die()
+{
+    
+    Destroy(gameObject);
 }
 
 private void FixedUpdate()
