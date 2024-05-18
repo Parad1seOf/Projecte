@@ -14720,6 +14720,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+--- !u!114 &210199515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210199498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5830505b547d347b263d635c793464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthManager:
+    Health: 5
 --- !u!1 &265386928
 GameObject:
   m_ObjectHideFlags: 0
@@ -15951,7 +15965,7 @@ MonoBehaviour:
   MovemntSpeedPatrol: 2.7
   HealthManager:
     Health: 1
-  Damage: 0
+  Damage: 1
   AttackRange: 1.5
   DetectionRange: 3.5
 --- !u!61 &841881592
@@ -16091,7 +16105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown:
-    colldownTime: 0
+    colldownTime: 1
   AttackController: {fileID: 1335436678}
   AttackRange: 0.9
   AttackDamage: 1
@@ -17536,6 +17550,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 210199512}
+    - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 210199515}
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 19cbc1c2bebd27140b43fe7c6ad428c2, type: 3}
 --- !u!1 &1873205006
 GameObject:
@@ -18156,6 +18173,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5430159215677227494, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
+      propertyPath: Damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430159215677227494, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
       propertyPath: p_point1
       value: 
       objectReference: {fileID: 475181486}
@@ -18164,8 +18185,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 384212689}
     - target: {fileID: 5430159215677227494, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430159215677227494, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
       propertyPath: HealthManager.Health
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043672998042931784, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043672998042931784, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7565058973916368535, guid: 2091710a61a91d14ab1cccc1e0c1b99f, type: 3}
       propertyPath: m_Name
