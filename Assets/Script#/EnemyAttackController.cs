@@ -19,7 +19,28 @@ public class EnemyAttackController : MonoBehaviour
     }
 
     public void Update() {
-        
+    #if ENABLE_LEGACY_INPUT_MANAGER
+    if (cooldown.IsCoolingDown) return;
+        if (Vector2.Distance(AttackController.position, GameObject.FindGameObjectWithTag("Player").transform.position) < AttackRange)
+        {
+            Hit();
+            cooldown.StartCooldown();
+        }
+        else
+        {
+            // animator.SetBool("Attack", false);
+        }
+    #endif
+
+        if (GameObject.FindGameObjectWithTag("Player").transform.position.x > transform.position.x)
+        {
+            AttackController.position = new Vector2(transform.position.x + 1, transform.position.y);
+        }
+        else
+        {
+            AttackController.position = new Vector2(transform.position.x - 1, transform.position.y);
+        }
+
     }
 
     private void Hit() 
@@ -32,8 +53,8 @@ public class EnemyAttackController : MonoBehaviour
         {
             if (a_collider.CompareTag("Player"))
             {
-                Debug.Log("Hit");
-                a_collider.GetComponent<LS_Enemy>().TakeDamage(AttackDamage);
+                Debug.Log("Hit, player!");
+                a_collider.GetComponent<CharacterLive>().TakeDamage(AttackDamage);
             }
         }
 
