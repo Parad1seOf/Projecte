@@ -58,8 +58,7 @@ public class EnemyAttackController : MonoBehaviour
                 a_collider.GetComponent<CharacterLive>().TakeDamage(AttackDamage);
             }
         }
-    }
-    
+    } 
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
