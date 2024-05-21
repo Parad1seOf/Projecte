@@ -101,7 +101,7 @@ public class LS_Enemy : MonoBehaviour
     private IEnumerator Die()
     {
         animator.SetTrigger("Die");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.6f);
         Destroy(gameObject);
     }
 

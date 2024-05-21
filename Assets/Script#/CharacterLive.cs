@@ -1,5 +1,5 @@
 using System.Collections;
-// using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterLive : MonoBehaviour
@@ -27,11 +27,11 @@ public class CharacterLive : MonoBehaviour
             StartCoroutine(Die());
         }
     }
-
     private IEnumerator Die()
     {
-
-        yield return new WaitForSeconds(2);
+        Debug.Log("Player is dead");
+        HealthManager.Die();
+        yield return new WaitForSeconds(0.6f);
         Destroy(gameObject);
     }
 }
