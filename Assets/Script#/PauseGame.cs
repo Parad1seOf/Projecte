@@ -31,8 +31,7 @@ public class PauseGame : MonoBehaviour
 
     private void ChangeGameState(EGameState newState)
     {
-        if (newState == c_gamestate)
-            return;
+        if (newState == c_gamestate) return;
         Debug.Log(newState.ToString());
         ExitCurrentState();
         c_gamestate = newState;

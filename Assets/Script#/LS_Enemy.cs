@@ -91,15 +91,18 @@ public class LS_Enemy : MonoBehaviour
         HealthManager.TakeDamage(damage);
         animator.SetTrigger("TakeDamage");
 
+        if (HealthManager.GetHealth() <= 0)
+        {
+            startCoroutine(Die());
+        }
 
     }
 
-    public void Die()
+    private IEnumerator Die()
     {
-
-        HealthManager.Die();
-        Destroy(gameObject);
         animator.SetTrigger("Die");
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
     }
 
     private void FixedUpdate()

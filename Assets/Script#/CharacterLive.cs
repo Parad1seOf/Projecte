@@ -24,14 +24,15 @@ public class CharacterLive : MonoBehaviour
         if (HealthManager.GetHealth() <= 0)
         {
             animator.SetTrigger("Die");
-            Die();
+            startCoroutine(Die());
         }
     }
 
-    public void Die()
+    private IEnumerator Die()
     {
         Debug.Log("Player is dead");
         HealthManager.Die();
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }
