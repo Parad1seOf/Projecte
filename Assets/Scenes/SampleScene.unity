@@ -15300,10 +15300,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.26538086, y: 1.2398726}
+    - - {x: 0.25604248, y: 1.2380054}
       - {x: 0.2557907, y: 2.2324448}
-      - {x: -2.7301407, y: 2.2143965}
-      - {x: -2.7292023, y: 3.2324753}
+      - {x: -2.7524872, y: 2.2342575}
+      - {x: -2.7516022, y: 3.2304394}
       - {x: -3.8801603, y: 3.234251}
       - {x: -3.888742, y: -3.1795864}
       - {x: 3.2458358, y: -3.1373858}
@@ -15312,7 +15312,7 @@ PolygonCollider2D:
       - {x: 4.2599945, y: -1.7694962}
       - {x: 4.259491, y: -0.7646841}
       - {x: 3.269867, y: -0.7668551}
-      - {x: 3.2706137, y: 1.2275372}
+      - {x: 3.2706137, y: 1.2398832}
   m_UseDelaunayMesh: 0
 --- !u!1839735485 &369616626
 Tilemap:
@@ -16879,10 +16879,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d2af23bbea3c9409ddf28c1c706e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTag: Player
-  _startInput: ActionInput
-  _pauseInput: PauseInput
-  _resetGameWaitTime: 0.5
+  characterTag: Player
+  playInput: PlayInput
+  pauseInput: PauseInput
 --- !u!4 &1101109506
 Transform:
   m_ObjectHideFlags: 0
@@ -18795,7 +18794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5430159215677227494, guid: 9303f808213b9ed46a581b9c1244227c, type: 3}
       propertyPath: HealthManager.Health
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6043672998042931784, guid: 9303f808213b9ed46a581b9c1244227c, type: 3}
       propertyPath: m_FlipX
