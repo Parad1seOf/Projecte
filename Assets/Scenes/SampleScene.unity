@@ -14989,7 +14989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown:
-    colldownTime: 0
+    colldownTime: 0.6
   AttackController: {fileID: 517783077}
   AttackRange: 1
   AttackDamage: 1

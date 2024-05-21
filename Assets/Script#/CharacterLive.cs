@@ -1,5 +1,6 @@
 // using System.Collections;
 // using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterLive : MonoBehaviour
@@ -20,14 +21,14 @@ public class CharacterLive : MonoBehaviour
 
         if (HealthManager.GetHealth() <= 0)
         {
-            Die();
+            StartCoroutine(Die());
         }
     }
 
-    public void Die()
+    IEnumerator Die()
     {
-        Debug.Log("Player is dead");
-        HealthManager.Die();
+        Debug.Log("Dead");
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 }

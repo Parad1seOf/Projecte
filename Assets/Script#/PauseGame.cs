@@ -6,16 +6,14 @@ public class PauseGame : MonoBehaviour
     {
         READY,
         PLAYING,
-        PAUSED,
-        GAME_OVER
+        PAUSED
     }
 
-    public string _playerTag = "Player";
-    public string _startInput = "ActionInput";
-    public string _pauseInput = "PauseInput";
-    public float _resetGameWaitTime = 0.5f;
+    public string characterTag = "Player";
+    public string playInput = "PlayInput";
+    public string pauseInput = "PauseInput";
 
-    private EGameState _currentGameState = EGameState.READY;
+    private EGameState c_gamestate = EGameState.READY;
 
     void Start()
     {
@@ -24,31 +22,26 @@ public class PauseGame : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown(_startInput) && (_currentGameState == EGameState.READY || _currentGameState == EGameState.PAUSED))
+        if (Input.GetButtonDown(playInput) && (c_gamestate == EGameState.READY || c_gamestate == EGameState.PAUSED))
             ChangeGameState(EGameState.PLAYING);
 
-        else if(Input.GetButtonDown(_pauseInput) && _currentGameState == EGameState.PLAYING)
+        else if(Input.GetButtonDown(pauseInput) && c_gamestate == EGameState.PLAYING)
             ChangeGameState(EGameState.PAUSED);
-    }
-
-    private void OnPlayerDied()
-    {
-        ChangeGameState(EGameState.GAME_OVER);
     }
 
     private void ChangeGameState(EGameState newState)
     {
-        if (newState == _currentGameState)
+        if (newState == c_gamestate)
             return;
         Debug.Log(newState.ToString());
         ExitCurrentState();
-        _currentGameState = newState;
+        c_gamestate = newState;
         EnterCurrentState();
     }
 
     private void ExitCurrentState()
     {
-        switch(_currentGameState) 
+        switch(c_gamestate) 
         {
             case EGameState.READY:
                 Time.timeScale = 1.0f;
@@ -56,9 +49,6 @@ public class PauseGame : MonoBehaviour
             case EGameState.PLAYING:
                 break;
             case EGameState.PAUSED:
-                Time.timeScale = 1.0f;
-                break;
-            case EGameState.GAME_OVER:
                 Time.timeScale = 1.0f;
                 break;
         }
@@ -66,7 +56,7 @@ public class PauseGame : MonoBehaviour
 
     private void EnterCurrentState()
     {
-        switch (_currentGameState)
+        switch (c_gamestate)
         {
             case EGameState.READY:
                 Time.timeScale = 0.0f;
@@ -76,15 +66,6 @@ public class PauseGame : MonoBehaviour
             case EGameState.PAUSED:
                 Time.timeScale = 0.0f;
                 break;
-            case EGameState.GAME_OVER:
-                Time.timeScale = 0.25f;
-                Invoke("ResetGame", _resetGameWaitTime);
-                break;
         }
-    }
-
-    private void ResetGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

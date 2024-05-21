@@ -94,14 +94,14 @@ public class LS_Enemy : MonoBehaviour
 
         if (HealthManager.GetHealth() <= 0)
         {
-            Die();
+            StartCoroutine(Die());
         }
     }
 
-    public void Die()
+    IEnumerator Die()
     {
-
-        HealthManager.Die();
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 
