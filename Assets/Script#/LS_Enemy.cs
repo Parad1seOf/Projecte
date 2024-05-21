@@ -38,7 +38,7 @@ public class LS_Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         CurrentPoint = p_point2.transform;
 
-        HealthManager = new GM_Health();
+        // HealthManager = new GM_Health();
 
         animator = GetComponent<Animator>();
 
@@ -88,10 +88,14 @@ public class LS_Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+
         HealthManager.TakeDamage(damage);
         animator.SetTrigger("TakeDamage");
 
-
+        if (HealthManager.GetHealth() <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
