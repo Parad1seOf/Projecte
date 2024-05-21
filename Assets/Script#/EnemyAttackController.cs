@@ -26,7 +26,7 @@ public class EnemyAttackController : MonoBehaviour
             animator.SetBool("Attack", true);
             Hit();
             cooldown.StartCooldown();
-        }
+        }   
         else
         {
             animator.SetBool("Attack", false);

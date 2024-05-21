@@ -232,7 +232,7 @@ MonoBehaviour:
   MovemntSpeedPatrol: 2.7
   HealthManager:
     Health: 1
-  Damage: 0
+  Damage: 1
   AttackRange: 1.5
   DetectionRange: 3.5
 --- !u!114 &4186855696410419996
