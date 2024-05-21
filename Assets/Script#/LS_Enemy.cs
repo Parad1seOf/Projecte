@@ -93,7 +93,7 @@ public class LS_Enemy : MonoBehaviour
 
         if (HealthManager.GetHealth() <= 0)
         {
-            startCoroutine(Die());
+            StartCoroutine(Die());
         }
 
     }
