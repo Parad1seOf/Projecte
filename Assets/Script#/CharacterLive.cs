@@ -8,7 +8,7 @@ public class CharacterLive : MonoBehaviour
 
     private void Start()
     {
-        HealthManager = new GM_Health();
+        //HealthManager = new GM_Health();
         Debug.Log("Initial Health: " + HealthManager.GetHealth());
     }
 

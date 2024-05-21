@@ -23,12 +23,13 @@ public class EnemyAttackController : MonoBehaviour
     if (cooldown.IsCoolingDown) return;
         if (Vector2.Distance(AttackController.position, GameObject.FindGameObjectWithTag("Player").transform.position) < AttackRange)
         {
+            animator.SetBool("Attack", true);
             Hit();
             cooldown.StartCooldown();
         }
         else
         {
-            // animator.SetBool("Attack", false);
+            animator.SetBool("Attack", false);
         }
     #endif
 
@@ -45,7 +46,6 @@ public class EnemyAttackController : MonoBehaviour
 
     private void Hit() 
     {
-        if (cooldown.IsCoolingDown) return;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Collider2D[] objects = Physics2D.OverlapCircleAll(AttackController.position, AttackRange);
 
@@ -54,11 +54,10 @@ public class EnemyAttackController : MonoBehaviour
             if (a_collider.CompareTag("Player"))
             {
                 Debug.Log("Hit, player!");
+
                 a_collider.GetComponent<CharacterLive>().TakeDamage(AttackDamage);
             }
         }
-
-        cooldown.StartCooldown();
     }
     
 
