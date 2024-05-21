@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+// using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleCombatCharacter : MonoBehaviour
@@ -24,7 +24,7 @@ public class MeleCombatCharacter : MonoBehaviour
         if (cooldown.IsCoolingDown) return;
         if (Input.GetButtonDown("Attack"))
         {
-            Hit();
+            StartCoroutine(Hit());
             Debug.Log("Attack");
             animator.SetTrigger("attack");
 
@@ -33,9 +33,9 @@ public class MeleCombatCharacter : MonoBehaviour
         #endif
     }
 
-    private void Hit() 
+    private IEnumerator Hit() 
     {
-        if (cooldown.IsCoolingDown) return;
+        if (cooldown.IsCoolingDown) yield break;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Collider2D[] objects = Physics2D.OverlapCircleAll(AttackController.position, AttackRange);
 
@@ -44,6 +44,7 @@ public class MeleCombatCharacter : MonoBehaviour
             if (a_collider.CompareTag("Enemy"))
             {
                 Debug.Log("Hit");
+                yield return new WaitForSeconds(0.5f);
                 a_collider.GetComponent<LS_Enemy>().TakeDamage(AttackDamage);
             }
         }
