@@ -9,12 +9,9 @@ public class CharacterMovement : MonoBehaviour
     public Collider2D RollColider;
     public Collider2D IdleColider;
 
-
     [SerializeField] private Cooldown cooldown;
 
-
     [Header("Movement")]
-
     private float HorizontalMovement = 0f;
     [SerializeField] private float SpeedMovement;
     [Range(0, 0.2f)][SerializeField] private float SmoothMovement;
@@ -22,7 +19,6 @@ public class CharacterMovement : MonoBehaviour
     private bool FacingRight = true;
 
     [Header("Jump")]
-
     [SerializeField] private float JumpForce;
     [SerializeField] private LayerMask GroundCheck;
     [SerializeField] private Transform GroundSensor;
@@ -31,7 +27,6 @@ public class CharacterMovement : MonoBehaviour
     private bool Jump;
 
     [Header("Roll")]
-
     [SerializeField] private float RollSpeed;
     [SerializeField] private float RollTime;
     private float InitialGravity;
@@ -40,13 +35,19 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] private AudioClip saltoSonido;
     [SerializeField] private AudioClip caminarSonido;
+    private AudioSource caminarAudioSource;
 
+    private bool isCaminarSonidoPlaying = false;
 
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         InitialGravity = rb2D.gravityScale;
+        
+        caminarAudioSource = gameObject.AddComponent<AudioSource>();
+        caminarAudioSource.clip = caminarSonido;
+        caminarAudioSource.loop = true;
     }
 
     public void Update()
@@ -65,7 +66,7 @@ public class CharacterMovement : MonoBehaviour
             StartCoroutine(Roll());
             cooldown.StartCooldown();
         }
-#endif
+        #endif
     }
 
     public void FixedUpdate()
@@ -87,14 +88,12 @@ public class CharacterMovement : MonoBehaviour
         if (Mathf.Approximately(horizontalMovement, 0f)) 
         {
             targetVelocity = new Vector2(0, rb2D.velocity.y);
-            ControladorSonido.Instance.EjecutarSonido(caminarSonido);
-
+            isCaminarSonidoPlaying = false;
+            caminarAudioSource.Stop();
         }
         else 
         {
             targetVelocity = new Vector2(horizontalMovement * 10f, rb2D.velocity.y);
-            ControladorSonido.Instance.EjecutarSonido(caminarSonido);
-
         }
 
         if (Mathf.Approximately(horizontalMovement, 0f)) 
@@ -104,6 +103,11 @@ public class CharacterMovement : MonoBehaviour
         else 
         {
             rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, targetVelocity, ref Velocity, SmoothMovement);
+            if (!isCaminarSonidoPlaying && Grounded)
+            {
+                caminarAudioSource.Play();
+                isCaminarSonidoPlaying = true;
+            }
         }
 
         animator.SetFloat("speed", Mathf.Abs(rb2D.velocity.x));
@@ -118,14 +122,14 @@ public class CharacterMovement : MonoBehaviour
         if (Grounded && jump) {
             Grounded = false;
             rb2D.AddForce(new Vector2(0f, JumpForce));
+            caminarAudioSource.Stop();
+            isCaminarSonidoPlaying = false;
             ControladorSonido.Instance.EjecutarSonido(saltoSonido);
         }
     }
 
-
     private IEnumerator Roll()
     {
-
         if (cooldown.IsCoolingDown) yield return null;
 
         if (Grounded)
@@ -140,14 +144,13 @@ public class CharacterMovement : MonoBehaviour
             
             animator.SetTrigger("roll");
 
-        yield return new WaitForSeconds(RollTime);
+            yield return new WaitForSeconds(RollTime);
             CanMove = true;
             CanRoll = true;
             rb2D.gravityScale = InitialGravity;
 
             RollColider.enabled = false;
             IdleColider.enabled = true;
-
         }
 
         cooldown.StartCooldown();
@@ -161,11 +164,11 @@ public class CharacterMovement : MonoBehaviour
         transform.localScale = Scaler;
     }
 
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(GroundSensor.position, ColiderDimension);
     }
-#endif
+    #endif
 }
