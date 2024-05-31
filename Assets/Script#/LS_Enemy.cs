@@ -31,6 +31,8 @@ public class LS_Enemy : MonoBehaviour
     private GameObject Player;
     private Animator animator;
 
+    [SerializeField] private AudioClip recivirDañoEnemigoSonido;
+
 
 
     private void Start()
@@ -96,6 +98,7 @@ public class LS_Enemy : MonoBehaviour
             StartCoroutine(Die());
         }
 
+        ControladorSonido.Instance.EjecutarSonido(recivirDañoEnemigoSonido);
     }
 
     private IEnumerator Die()

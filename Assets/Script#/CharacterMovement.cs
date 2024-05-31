@@ -38,6 +38,10 @@ public class CharacterMovement : MonoBehaviour
     private bool CanRoll = true;
     private bool CanMove = true;
 
+    [SerializeField] private AudioClip saltoSonido;
+    [SerializeField] private AudioClip caminarSonido;
+
+
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -80,15 +84,25 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector2 targetVelocity;
 
-        if (Mathf.Approximately(horizontalMovement, 0f)) {
+        if (Mathf.Approximately(horizontalMovement, 0f)) 
+        {
             targetVelocity = new Vector2(0, rb2D.velocity.y);
-        } else {
+            ControladorSonido.Instance.EjecutarSonido(caminarSonido);
+
+        }
+        else 
+        {
             targetVelocity = new Vector2(horizontalMovement * 10f, rb2D.velocity.y);
+            ControladorSonido.Instance.EjecutarSonido(caminarSonido);
+
         }
 
-        if (Mathf.Approximately(horizontalMovement, 0f)) {
+        if (Mathf.Approximately(horizontalMovement, 0f)) 
+        {
             rb2D.velocity = new Vector2(0, rb2D.velocity.y);
-        } else {
+        }
+        else 
+        {
             rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, targetVelocity, ref Velocity, SmoothMovement);
         }
 
@@ -104,6 +118,7 @@ public class CharacterMovement : MonoBehaviour
         if (Grounded && jump) {
             Grounded = false;
             rb2D.AddForce(new Vector2(0f, JumpForce));
+            ControladorSonido.Instance.EjecutarSonido(saltoSonido);
         }
     }
 

@@ -12,6 +12,7 @@ public class MeleCombatCharacter : MonoBehaviour
     [SerializeField] private int AttackDamage;
     private Animator animator;
 
+    [SerializeField] private AudioClip ataqueSonido;
 
     public void Start()
     {
@@ -22,6 +23,7 @@ public class MeleCombatCharacter : MonoBehaviour
     {
         #if ENABLE_LEGACY_INPUT_MANAGER
         if (cooldown.IsCoolingDown) return;
+        
         if (Input.GetButtonDown("Attack"))
         {
             StartCoroutine(Hit());
@@ -29,8 +31,10 @@ public class MeleCombatCharacter : MonoBehaviour
             animator.SetTrigger("attack");
 
             cooldown.StartCooldown();
+
+            ControladorSonido.Instance.EjecutarSonido(ataqueSonido);
         }
-        #endif
+#endif
     }
 
     private IEnumerator Hit() 

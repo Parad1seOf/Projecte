@@ -12,6 +12,7 @@ public class EnemyAttackController : MonoBehaviour
     [SerializeField] private int AttackDamage;
     private Animator animator;
 
+    [SerializeField] private AudioClip ataqueEnemigoSonido;
 
     public void Start()
     {
@@ -26,6 +27,8 @@ public class EnemyAttackController : MonoBehaviour
             animator.SetBool("Attack", true);
             Hit();
             cooldown.StartCooldown();
+
+            ControladorSonido.Instance.EjecutarSonido(ataqueEnemigoSonido);
         }   
         else
         {
