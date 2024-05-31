@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class PauseGame : MonoBehaviour
 {
     private enum EGameState 
@@ -13,7 +14,7 @@ public class PauseGame : MonoBehaviour
     public string playInput = "PlayInput";
     public string pauseInput = "PauseInput";
 
-    private EGameState c_gamestate = EGameState.READY;
+    private EGameState c_gamestate = EGameState.PLAYING;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class PauseGame : MonoBehaviour
         if (Input.GetButtonDown(playInput) && (c_gamestate == EGameState.READY || c_gamestate == EGameState.PAUSED))
             ChangeGameState(EGameState.PLAYING);
 
-        else if(Input.GetButtonDown(pauseInput) && c_gamestate == EGameState.PLAYING)
+        else if (Input.GetButtonDown(pauseInput) && c_gamestate == EGameState.PLAYING)
             ChangeGameState(EGameState.PAUSED);
     }
 
@@ -40,10 +41,9 @@ public class PauseGame : MonoBehaviour
 
     private void ExitCurrentState()
     {
-        switch(c_gamestate) 
+        switch (c_gamestate) 
         {
             case EGameState.READY:
-                Time.timeScale = 1.0f;
                 break;
             case EGameState.PLAYING:
                 break;
@@ -61,6 +61,7 @@ public class PauseGame : MonoBehaviour
                 Time.timeScale = 0.0f;
                 break;
             case EGameState.PLAYING:
+                Time.timeScale = 1.0f;
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 0.0f;
