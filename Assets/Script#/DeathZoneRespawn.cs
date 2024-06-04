@@ -10,11 +10,11 @@ public class DeathZoneRespawn : MonoBehaviour
 
     public void OnTriggerEnter2D (Collider2D collisions) {
         if (collisions.CompareTag("DeathZone")) {
-            Die();
+            Hit();
         }
     }
 
-    public void Die () {
+    public void Hit () {
         Respawn();
     }
 
