@@ -9,23 +9,25 @@ public class CharacterLive : MonoBehaviour
 
     private void Start()
     {
-        //HealthManager = new GM_Health();
         Debug.Log("Initial Health: " + HealthManager.GetHealth());
         animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
     {
-        animator.SetTrigger("TakeDamage");
         Debug.Log("Taking damage: " + damage);
         HealthManager.TakeDamage(damage);
         Debug.Log("Current Health: " + HealthManager.GetHealth());
+
 
         if (HealthManager.GetHealth() <= 0)
         {
             animator.SetTrigger("Die");
             StartCoroutine(Die());
+        } else {
+            animator.SetTrigger("TakeDamage");
         }
+
     }
     private IEnumerator Die()
     {

@@ -235,7 +235,7 @@ MonoBehaviour:
   Damage: 1
   AttackRange: 1.5
   DetectionRange: 3.5
-  "recivirDa\xF1oEnemigoSonido": {fileID: 8300000, guid: e18917b3428bb0646b74e1f548e0edf9, type: 3}
+  EnemyHitSound: {fileID: 0}
 --- !u!114 &4186855696410419996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown:
-    colldownTime: 2
+    cooldownTime: 1
   AttackController: {fileID: 4741514747379163244}
   AttackRange: 0.9
   AttackDamage: 1

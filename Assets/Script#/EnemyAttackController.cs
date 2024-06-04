@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
 {
-
     [SerializeField] private Cooldown cooldown;
-
     [SerializeField] private Transform AttackController;
     [SerializeField] private float AttackRange;
     [SerializeField] private int AttackDamage;
@@ -14,29 +12,30 @@ public class EnemyAttackController : MonoBehaviour
 
     [SerializeField] private AudioClip ataqueEnemigoSonido;
 
-    public void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void Update() {
-    #if ENABLE_LEGACY_INPUT_MANAGER
-    if (cooldown.IsCoolingDown) return;
-        if (Vector2.Distance(AttackController.position, GameObject.FindGameObjectWithTag("Player").transform.position) < AttackRange)
+    private void Update()
+    {
+#if ENABLE_LEGACY_INPUT_MANAGER
+        if (cooldown.IsCoolingDown) return;
+
+        Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        if (Vector2.Distance(AttackController.position, playerTransform.position) < AttackRange)
         {
             animator.SetBool("Attack", true);
             Hit();
-            cooldown.StartCooldown();
-
             ControladorSonido.Instance.EjecutarSonido(ataqueEnemigoSonido);
-        }   
+            cooldown.StartCooldown();
+        }
         else
         {
             animator.SetBool("Attack", false);
         }
-    #endif
 
-        if (GameObject.FindGameObjectWithTag("Player").transform.position.x > transform.position.x)
+        if (playerTransform.position.x > transform.position.x)
         {
             AttackController.position = new Vector2(transform.position.x + 1, transform.position.y);
         }
@@ -44,10 +43,10 @@ public class EnemyAttackController : MonoBehaviour
         {
             AttackController.position = new Vector2(transform.position.x - 1, transform.position.y);
         }
-
+#endif
     }
 
-    private void Hit() 
+    private void Hit()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Collider2D[] objects = Physics2D.OverlapCircleAll(AttackController.position, AttackRange);
@@ -57,11 +56,19 @@ public class EnemyAttackController : MonoBehaviour
             if (a_collider.CompareTag("Player"))
             {
                 Debug.Log("Hit, player!");
-
                 a_collider.GetComponent<CharacterLive>().TakeDamage(AttackDamage);
+
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.PerderVida();
+                }
+                else
+                {
+                    Debug.LogError("GameManager instance is null");
+                }
             }
         }
-    } 
+    }
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
@@ -71,4 +78,3 @@ public class EnemyAttackController : MonoBehaviour
     }
 #endif
 }
-
