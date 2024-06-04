@@ -10,4 +10,7 @@ public class GM_Health
     public void TakeDamage(int AttackDamage) => Health -= AttackDamage;
     public void Heal(int heal) => Health += heal;
     public void Die() => Health = 0;
+
+    
+
 }

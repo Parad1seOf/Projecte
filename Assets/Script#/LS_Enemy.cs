@@ -31,7 +31,7 @@ public class LS_Enemy : MonoBehaviour
     private GameObject Player;
     private Animator animator;
 
-    [SerializeField] private AudioClip recivirDañoEnemigoSonido;
+    [SerializeField] private AudioClip EnemyHitSound;
 
 
 
@@ -98,7 +98,7 @@ public class LS_Enemy : MonoBehaviour
             StartCoroutine(Die());
         }
 
-        ControladorSonido.Instance.EjecutarSonido(recivirDañoEnemigoSonido);
+        ControladorSonido.Instance.EjecutarSonido(EnemyHitSound);
     }
 
     private IEnumerator Die()
@@ -127,20 +127,15 @@ public class LS_Enemy : MonoBehaviour
         }
 
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*
+    private void OnCollisionEntered2D(Collision2D other)
     {
-        // if (collision.CompareTag("Player"))
-        // {
-        //     collision.GetComponent<CharacterMovement>().TakeDamage(Damage);
-        // }
-
-        // if (collision.CompareTag("Bullet"))
-        // {
-        //     Health -= collision.GetComponent<Bullet>().Damage;
-        // }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.PerderVida();
+        }
     }
-
+    */
     private void flip()
     {
         Vector3 Scaler = transform.localScale;

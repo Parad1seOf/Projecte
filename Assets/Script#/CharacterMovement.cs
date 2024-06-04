@@ -34,6 +34,8 @@ public class CharacterMovement : MonoBehaviour
     private bool CanMove = true;
 
     [SerializeField] private AudioClip saltoSonido;
+    public static ControladorSonido Instance { get; private set; }
+
 
 
 
