@@ -34,10 +34,8 @@ public class CharacterMovement : MonoBehaviour
     private bool CanMove = true;
 
     [SerializeField] private AudioClip saltoSonido;
-    [SerializeField] private AudioClip caminarSonido;
-    private AudioSource caminarAudioSource;
 
-    private bool isCaminarSonidoPlaying = false;
+
 
     public void Start()
     {
@@ -45,9 +43,7 @@ public class CharacterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         InitialGravity = rb2D.gravityScale;
         
-        caminarAudioSource = gameObject.AddComponent<AudioSource>();
-        caminarAudioSource.clip = caminarSonido;
-        caminarAudioSource.loop = true;
+
     }
 
     public void Update()
@@ -88,8 +84,6 @@ public class CharacterMovement : MonoBehaviour
         if (Mathf.Approximately(horizontalMovement, 0f)) 
         {
             targetVelocity = new Vector2(0, rb2D.velocity.y);
-            isCaminarSonidoPlaying = false;
-            caminarAudioSource.Stop();
         }
         else 
         {
@@ -103,11 +97,7 @@ public class CharacterMovement : MonoBehaviour
         else 
         {
             rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, targetVelocity, ref Velocity, SmoothMovement);
-            if (!isCaminarSonidoPlaying && Grounded)
-            {
-                caminarAudioSource.Play();
-                isCaminarSonidoPlaying = true;
-            }
+      
         }
 
         animator.SetFloat("speed", Mathf.Abs(rb2D.velocity.x));
@@ -122,8 +112,6 @@ public class CharacterMovement : MonoBehaviour
         if (Grounded && jump) {
             Grounded = false;
             rb2D.AddForce(new Vector2(0f, JumpForce));
-            caminarAudioSource.Stop();
-            isCaminarSonidoPlaying = false;
             ControladorSonido.Instance.EjecutarSonido(saltoSonido);
         }
     }
