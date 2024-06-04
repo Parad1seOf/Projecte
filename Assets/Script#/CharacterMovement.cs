@@ -56,12 +56,12 @@ public class CharacterMovement : MonoBehaviour
         }
 
         #if ENABLE_LEGACY_INPUT_MANAGER
-        if (cooldown.IsCoolingDown) return;
-        if (Input.GetButtonDown("Roll") && CanRoll)
-        {
-            StartCoroutine(Roll());
-            cooldown.StartCooldown();
-        }
+            if (cooldown.IsCoolingDown) return;
+            if (Input.GetButtonDown("Roll") && CanRoll)
+            {
+                StartCoroutine(Roll());
+                cooldown.StartCooldown();
+            }
         #endif
     }
 
@@ -153,10 +153,10 @@ public class CharacterMovement : MonoBehaviour
     }
 
     #if UNITY_EDITOR
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(GroundSensor.position, ColiderDimension);
-    }
+        public void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(GroundSensor.position, ColiderDimension);
+        }
     #endif
 }
