@@ -4,7 +4,6 @@ public class PauseGame : MonoBehaviour
 {
     private enum EGameState 
     {
-        READY,
         PLAYING,
         PAUSED
     }
@@ -24,7 +23,7 @@ public class PauseGame : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown(playInput) && (c_gamestate == EGameState.READY || c_gamestate == EGameState.PAUSED))
+        if (Input.GetButtonDown(playInput) && (c_gamestate == EGameState.PAUSED))
             ChangeGameState(EGameState.PLAYING);
         else if (Input.GetButtonDown(pauseInput) && c_gamestate == EGameState.PLAYING)
             ChangeGameState(EGameState.PAUSED);
@@ -43,17 +42,14 @@ public class PauseGame : MonoBehaviour
     {
         switch (c_gamestate) 
         {
-            case EGameState.READY:
-                // Ajuste opcional para READY si es necesario
-                break;
             case EGameState.PLAYING:
-                // No se necesita ningún ajuste específico al salir del estado PLAYING
+                
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 1.0f;
                 if (BackgroundMusic != null)
                 {
-                    BackgroundMusic.Play();  // Reanuda la música
+                    BackgroundMusic.Play();
                 }
                 break;
         }
@@ -63,21 +59,18 @@ public class PauseGame : MonoBehaviour
     {
         switch (c_gamestate)
         {
-            case EGameState.READY:
-                Time.timeScale = 0.0f;
-                break;
             case EGameState.PLAYING:
-                Time.timeScale = 1.0f; // Asegúrate de que el tiempo está corriendo cuando el juego está en PLAYING
+                Time.timeScale = 1.0f;
                 if (BackgroundMusic != null)
                 {
-                    BackgroundMusic.UnPause();  // Reanuda la música si está en pausa
+                    BackgroundMusic.UnPause();
                 }
                 break;
             case EGameState.PAUSED:
                 Time.timeScale = 0.0f;
                 if (BackgroundMusic != null)
                 {
-                    BackgroundMusic.Pause();  // Pausa la música
+                    BackgroundMusic.Pause();
                 }
                 break;
         }

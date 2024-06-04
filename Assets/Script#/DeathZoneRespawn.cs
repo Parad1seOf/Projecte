@@ -10,17 +10,16 @@ public class DeathZoneRespawn : MonoBehaviour
 
     public void OnTriggerEnter2D (Collider2D collisions) {
         if (collisions.CompareTag("DeathZone")) {
-            Hit();
+            Fall();
         }
     }
 
-    public void Hit () {
+    public void Fall () {
         Respawn();
     }
 
     public void Respawn () {
         transform.position = RespawnPoint;
-        //resetea la velocidad del personaje y el angulo de rotacion
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().angularVelocity = 0;
         
