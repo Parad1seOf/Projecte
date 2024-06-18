@@ -252,7 +252,7 @@ MonoBehaviour:
   RollColider: {fileID: 210199510}
   IdleColider: {fileID: 210199500}
   cooldown:
-    colldownTime: 1
+    cooldownTime: 0
   SpeedMovement: 27
   SmoothMovement: 0.183
   JumpForce: 600
@@ -264,6 +264,7 @@ MonoBehaviour:
   Grounded: 0
   RollSpeed: 2.5
   RollTime: 0.4
+  saltoSonido: {fileID: 0}
 --- !u!61 &210199500
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -402,10 +403,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown:
-    colldownTime: 0
+    cooldownTime: 0
   AttackController: {fileID: 517783077}
   AttackRange: 1
   AttackDamage: 1
+  ataqueSonido: {fileID: 0}
 --- !u!114 &210199514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1344,6 +1346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisobject: {fileID: 0}
+  colectar1: {fileID: 0}
 --- !u!50 &2123145410
 Rigidbody2D:
   serializedVersion: 4
