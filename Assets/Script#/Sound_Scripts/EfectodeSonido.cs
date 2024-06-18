@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class EfectodeSonido : MonoBehaviour
 {
-    [SerializeField] private AudioClip colectar1;
+    [SerializeField] private AudioClip collect1;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            ControladorSonido.Instance.EjecutarSonido(colectar1);
+            SoundController.Instance.EjecutarSonido(collect1);
         }
     }
 }

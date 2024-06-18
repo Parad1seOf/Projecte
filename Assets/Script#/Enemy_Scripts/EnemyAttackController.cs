@@ -10,7 +10,7 @@ public class EnemyAttackController : MonoBehaviour
     [SerializeField] private int AttackDamage;
     private Animator animator;
 
-    [SerializeField] private AudioClip ataqueEnemigoSonido;
+    [SerializeField] private AudioClip EnemySoundAttack;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class EnemyAttackController : MonoBehaviour
         {
             animator.SetBool("Attack", true);
             Hit();
-            ControladorSonido.Instance.EjecutarSonido(ataqueEnemigoSonido);
+            SoundController.Instance.EjecutarSonido(EnemySoundAttack);
             cooldown.StartCooldown();
         }
         else
@@ -60,7 +60,7 @@ public class EnemyAttackController : MonoBehaviour
 
                 if (GameManager.Instance != null)
                 {
-                    GameManager.Instance.PerderVida();
+                    GameManager.Instance.LoseHP();
                 }
                 else
                 {

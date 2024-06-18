@@ -10,7 +10,7 @@ public class LiveHud : MonoBehaviour
         {
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.PerderVida();
+                GameManager.Instance.LoseHP();
             }
             else
             {

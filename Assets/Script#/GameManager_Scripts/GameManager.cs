@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public HUD hud;
-    private int vidas = 5;
+    private int lives = 5;
 
     private void Awake()
     {
@@ -19,12 +19,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PerderVida()
+    public void LoseHP()
     {
-        vidas -= 1;
+        lives -= 1;
         if (hud != null)
         {
-            hud.DesactivarVidas(vidas);
+            hud.UnableLives(lives);
         }
     }
 }

@@ -98,7 +98,7 @@ public class LS_Enemy : MonoBehaviour
             StartCoroutine(Die());
         }
 
-        ControladorSonido.Instance.EjecutarSonido(EnemyHitSound);
+        SoundController.Instance.EjecutarSonido(EnemyHitSound);
     }
 
     private IEnumerator Die()
@@ -127,15 +127,7 @@ public class LS_Enemy : MonoBehaviour
         }
 
     }
-    /*
-    private void OnCollisionEntered2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            GameManager.Instance.PerderVida();
-        }
-    }
-    */
+    
     private void flip()
     {
         Vector3 Scaler = transform.localScale;

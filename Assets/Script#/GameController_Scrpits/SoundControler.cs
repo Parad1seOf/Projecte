@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControladorSonido : MonoBehaviour
+public class SoundController : MonoBehaviour
 {
-    public static ControladorSonido Instance;
+    public static SoundController Instance;
     private AudioSource audioSource;
 
     private void Awake()

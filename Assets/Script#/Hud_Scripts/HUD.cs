@@ -6,7 +6,7 @@ public class HUD : MonoBehaviour
 {
     public GameObject[] vidas;
 
-    public void DesactivarVidas(int indice)
+    public void UnableLives(int indice)
     {
         vidas[indice].SetActive(false);
     }

@@ -6,7 +6,7 @@ public class ColletableItem : MonoBehaviour
 {
     public GM_Item thisobject;
     
-    [SerializeField] private AudioClip colectar1;
+    [SerializeField] private AudioClip colect1;
 
     private void Awake() {
         thisobject = GetComponent<GM_Item>();    
@@ -29,13 +29,13 @@ public class ColletableItem : MonoBehaviour
                 Debug.LogError("GM_Inventori instance is null");
             }
 
-            if (ControladorSonido.Instance != null)
+            if (SoundController.Instance != null)
             {
-                ControladorSonido.Instance.EjecutarSonido(colectar1);
+                SoundController.Instance.EjecutarSonido(colect1);
             }
             else
             {
-                Debug.LogError("ControladorSonido instance is null");
+                Debug.LogError("SoundController instance is null");
             }
         }
     }

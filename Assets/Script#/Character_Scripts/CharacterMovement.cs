@@ -34,7 +34,7 @@ public class CharacterMovement : MonoBehaviour
     private bool CanMove = true;
 
     [SerializeField] private AudioClip saltoSonido;
-    public static ControladorSonido Instance { get; private set; }
+    public static SoundController Instance { get; private set; }
 
 
 
@@ -114,7 +114,7 @@ public class CharacterMovement : MonoBehaviour
         if (Grounded && jump) {
             Grounded = false;
             rb2D.AddForce(new Vector2(0f, JumpForce));
-            ControladorSonido.Instance.EjecutarSonido(saltoSonido);
+            SoundController.Instance.EjecutarSonido(saltoSonido);
         }
     }
 

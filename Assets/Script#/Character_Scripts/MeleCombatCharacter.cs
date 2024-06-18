@@ -12,7 +12,7 @@ public class MeleCombatCharacter : MonoBehaviour
     [SerializeField] private int AttackDamage;
     private Animator animator;
 
-    [SerializeField] private AudioClip ataqueSonido;
+    [SerializeField] private AudioClip SoundAtack;
 
     public void Start()
     {
@@ -32,7 +32,7 @@ public class MeleCombatCharacter : MonoBehaviour
 
             cooldown.StartCooldown();
 
-            ControladorSonido.Instance.EjecutarSonido(ataqueSonido);
+            SoundController.Instance.EjecutarSonido(SoundAtack);
         }
 #endif
     }
