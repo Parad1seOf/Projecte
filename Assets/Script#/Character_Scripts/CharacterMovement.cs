@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour
 
 
 
-
+    // Inicializamos los componentes
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -47,16 +47,18 @@ public class CharacterMovement : MonoBehaviour
         
 
     }
-
+     
     public void Update()
     {
+        // Movimiento horizontal con inputs de A y D
         HorizontalMovement = Input.GetAxisRaw("Horizontal") * SpeedMovement;
 
+        // Salto con input de W
         if (Input.GetButtonDown("Jump"))
         {
             Jump = true;
         }
-
+        // Rodar con input de Shift (Corutina)
         #if ENABLE_LEGACY_INPUT_MANAGER
             if (cooldown.IsCoolingDown) return;
             if (Input.GetButtonDown("Roll") && CanRoll)
@@ -69,8 +71,9 @@ public class CharacterMovement : MonoBehaviour
 
     public void FixedUpdate()
     {
+        // Comprobamos si el jugador esta tocando el suelo
         Grounded = Physics2D.OverlapBox(GroundSensor.position, ColiderDimension, 0f, GroundCheck);
-
+        
         if (CanMove)
         {
             MoveCharacter(HorizontalMovement * Time.fixedDeltaTime, Jump);
@@ -79,10 +82,12 @@ public class CharacterMovement : MonoBehaviour
         Jump = false;
     }
 
+    // Movimiento del personaje
     public void MoveCharacter(float horizontalMovement, bool jump)
     {
         Vector2 targetVelocity;
 
+        // Movimiento horizontal
         if (Mathf.Approximately(horizontalMovement, 0f)) 
         {
             targetVelocity = new Vector2(0, rb2D.velocity.y);
@@ -91,7 +96,7 @@ public class CharacterMovement : MonoBehaviour
         {
             targetVelocity = new Vector2(horizontalMovement * 10f, rb2D.velocity.y);
         }
-
+        // Movimiento suave
         if (Mathf.Approximately(horizontalMovement, 0f)) 
         {
             rb2D.velocity = new Vector2(0, rb2D.velocity.y);
@@ -105,12 +110,13 @@ public class CharacterMovement : MonoBehaviour
         animator.SetFloat("speed", Mathf.Abs(rb2D.velocity.x));
         animator.SetFloat("impulse", rb2D.velocity.y);
 
+        // Cambio de direccion (flip)
         if (horizontalMovement > 0 && !FacingRight) {
             Flip();
         } else if (horizontalMovement < 0 && FacingRight) {
             Flip();
         }
-
+        // Salto
         if (Grounded && jump) {
             Grounded = false;
             rb2D.AddForce(new Vector2(0f, JumpForce));
@@ -118,6 +124,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    // Corutina de rodar
     private IEnumerator Roll()
     {
         if (cooldown.IsCoolingDown) yield return null;
@@ -145,7 +152,7 @@ public class CharacterMovement : MonoBehaviour
 
         cooldown.StartCooldown();
     }
-
+    // Cambio de direccion (hacia donde mira el personaje)
     public void Flip()
     {
         FacingRight = !FacingRight;
@@ -153,7 +160,7 @@ public class CharacterMovement : MonoBehaviour
         Scaler.x *= -1;
         transform.localScale = Scaler;
     }
-
+    // Dibujar Gizmos
     #if UNITY_EDITOR
         public void OnDrawGizmos()
         {

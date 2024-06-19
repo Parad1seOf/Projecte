@@ -12,6 +12,7 @@ public class EnemyAttackController : MonoBehaviour
 
     [SerializeField] private AudioClip EnemySoundAttack;
 
+    // Inizializamos el componente
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,10 +20,12 @@ public class EnemyAttackController : MonoBehaviour
 
     private void Update()
     {
+        // Ataque con input de ataque y sonido
 #if ENABLE_LEGACY_INPUT_MANAGER
         if (cooldown.IsCoolingDown) return;
 
         Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        
         if (Vector2.Distance(AttackController.position, playerTransform.position) < AttackRange)
         {
             animator.SetBool("Attack", true);
@@ -34,7 +37,7 @@ public class EnemyAttackController : MonoBehaviour
         {
             animator.SetBool("Attack", false);
         }
-
+        // Cambio de direccion del ataque
         if (playerTransform.position.x > transform.position.x)
         {
             AttackController.position = new Vector2(transform.position.x + 1, transform.position.y);
@@ -46,6 +49,7 @@ public class EnemyAttackController : MonoBehaviour
 #endif
     }
 
+    // Funcion para que el jugador reciba daño
     private void Hit()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -69,7 +73,7 @@ public class EnemyAttackController : MonoBehaviour
             }
         }
     }
-
+    // Dibujar el rango de ataque
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {

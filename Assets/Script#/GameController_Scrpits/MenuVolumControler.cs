@@ -8,6 +8,7 @@ public class MenuVolumeController : MonoBehaviour
     public Slider volumeSlider;
     public AudioSource audioSource;
 
+    // Determina el valor del slider de volumen en base al valor guardado 
     void Start()
     {
         
@@ -18,6 +19,7 @@ public class MenuVolumeController : MonoBehaviour
         volumeSlider.onValueChanged.AddListener(SetVolume);
     }
 
+    // Establece el volumen del audio source y guarda el valor 
     public void SetVolume(float volume)
     {
         audioSource.volume = volume;

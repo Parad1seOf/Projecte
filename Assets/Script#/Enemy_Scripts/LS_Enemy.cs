@@ -21,10 +21,7 @@ public class LS_Enemy : MonoBehaviour
     [SerializeField] private float AttackRange;
 
     [Header("Enemy Detection")]
-    [SerializeField] private float DetectionRange;
-
-    [Header("Animation")]
-    // [SerializeField] private Animator Animations;
+    [SerializeField] private float DetectionRange;    
 
     private Rigidbody2D rb;
     private Transform CurrentPoint;
@@ -34,7 +31,7 @@ public class LS_Enemy : MonoBehaviour
     [SerializeField] private AudioClip EnemyHitSound;
 
 
-
+    // Inicializamos los componentes
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -49,6 +46,7 @@ public class LS_Enemy : MonoBehaviour
 
     private void Update()
     {
+        // Movimiento del enemigo
         if (Vector2.Distance(transform.position, Player.transform.position) > DetectionRange)
         {
             Vector2 point = CurrentPoint.position - transform.position;
@@ -65,6 +63,7 @@ public class LS_Enemy : MonoBehaviour
 
             }
 
+            // Cambio de direccion del enemigo
             if (Vector2.Distance(transform.position, CurrentPoint.position) < 0.5f && CurrentPoint == p_point2.transform)
             {
                 flip();
@@ -88,6 +87,7 @@ public class LS_Enemy : MonoBehaviour
         }
     }
 
+    // Funcion para que el enemigo reciba daño
     public void TakeDamage(int damage)
     {
         HealthManager.TakeDamage(damage);
@@ -101,6 +101,7 @@ public class LS_Enemy : MonoBehaviour
         SoundController.Instance.EjecutarSonido(EnemyHitSound);
     }
 
+    // Funcion de muerte del enemigo
     private IEnumerator Die()
     {
         animator.SetTrigger("Die");
@@ -108,6 +109,7 @@ public class LS_Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // Funcion para detectar y atacar al jugador
     private void FixedUpdate()
     {
         if (Player == null)
@@ -128,6 +130,7 @@ public class LS_Enemy : MonoBehaviour
 
     }
     
+    // Funcion para cambiar la direccion del enemigo
     private void flip()
     {
         Vector3 Scaler = transform.localScale;
@@ -135,6 +138,7 @@ public class LS_Enemy : MonoBehaviour
         transform.localScale = Scaler;
     }
 
+    // Dibujar el rango de ataque
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
@@ -145,6 +149,7 @@ public class LS_Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, AttackRange);
     }
 
+    // Dibujar los puntos de patrullaje
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
